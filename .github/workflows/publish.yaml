@@ -1,0 +1,64 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Process config
+        run: |-
+          set -euo pipefail
+          < ./config.yaml envsubst > config-with-token.yaml
+          cat config-with-token.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+
+      - name: Run review-rot
+        uses: lcarva/review-rot-action/run@main
+        with:
+          config: config-with-token.yaml
+          output: output.json
+
+      - name: Process data
+        run: |-
+          set -euo pipefail
+          echo '=== START OF FULL DATA ==='
+          cat output.json
+          echo '==== END OF FULL DATA ===='
+
+          mkdir web
+
+          < output.json ./filter-data.sh > web/data.json
+          echo '=== START OF FILTERED DATA ==='
+          cat web/data.json
+          echo '==== END OF FILTERED DATA ===='
+
+      - name: Fetch review-rot web
+        uses: lcarva/review-rot-action/web@main
+        with:
+          output: web
+
+      - name: Configure pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: web
+
+      - name: Deploy pages
+        uses: actions/deploy-pages@v1
+        id: deployment
