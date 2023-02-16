@@ -10,6 +10,7 @@ git_services:
   - hacbs-contract/enterprise-contract-controller
   - hacbs-contract/golden-container
   - hacbs-contract/hacbs-contract.github.io
+  - hacbs-contract/infra-deployments-ci
   - redhat-appstudio/book
   - redhat-appstudio/build-definitions
   - redhat-appstudio/e2e-tests
