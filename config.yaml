@@ -6,6 +6,7 @@ git_services:
   - hacbs-contract/.github
   - hacbs-contract/chains
   - hacbs-contract/ec-cli
+  - hacbs-contract/ec-cookbook
   - hacbs-contract/ec-policies
   - hacbs-contract/enterprise-contract-controller
   - hacbs-contract/golden-container
