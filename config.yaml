@@ -11,7 +11,9 @@ git_services:
   - hacbs-contract/enterprise-contract-controller
   - hacbs-contract/golden-container
   - hacbs-contract/hacbs-contract.github.io
+  - hacbs-contract/hacks
   - hacbs-contract/infra-deployments-ci
+  - hacbs-contract/tekton-catalag
   - redhat-appstudio/book
   - redhat-appstudio/build-definitions
   - redhat-appstudio/e2e-tests
