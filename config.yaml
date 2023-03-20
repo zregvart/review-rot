@@ -4,7 +4,6 @@ git_services:
 - host: github.com
   repos:
   - hacbs-contract/.github
-  - hacbs-contract/chains
   - hacbs-contract/ec-cli
   - hacbs-contract/ec-cookbook
   - hacbs-contract/ec-policies
