@@ -27,7 +27,7 @@ jobs:
           < ./config.yaml envsubst > config-with-token.yaml
           cat config-with-token.yaml
         env:
-          GITHUB_TOKEN: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run review-rot
         uses: lcarva/review-rot-action/run@main
