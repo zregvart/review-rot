@@ -16,7 +16,7 @@ authors='[
 jq --argjson authors "${authors}" -r '[
     .[] | select(
         ([.user] | inside($authors)) or
-        (.url | contains("/hacbs-contract/")) or
+        (.url | contains("/enterprise-contract/")) or
         (.title | test("enterprise.contract"; "i"))
     )
 ]'
