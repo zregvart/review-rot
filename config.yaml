@@ -3,16 +3,16 @@ arguments:
 git_services:
 - host: github.com
   repos:
-  - hacbs-contract/.github
-  - hacbs-contract/ec-cli
-  - hacbs-contract/ec-cookbook
-  - hacbs-contract/ec-policies
-  - hacbs-contract/enterprise-contract-controller
-  - hacbs-contract/golden-container
-  - hacbs-contract/hacbs-contract.github.io
-  - hacbs-contract/hacks
-  - hacbs-contract/infra-deployments-ci
-  - hacbs-contract/tekton-catalag
+  - enterprise-contract/.github
+  - enterprise-contract/ec-cli
+  - enterprise-contract/ec-cookbook
+  - enterprise-contract/ec-policies
+  - enterprise-contract/enterprise-contract-controller
+  - enterprise-contract/golden-container
+  - enterprise-contract/enterprise-contract.github.io
+  - enterprise-contract/hacks
+  - enterprise-contract/infra-deployments-ci
+  - enterprise-contract/tekton-catalag
   - redhat-appstudio/docs.stonesoup.io
   - redhat-appstudio/book
   - redhat-appstudio/build-definitions
