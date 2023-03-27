@@ -5,8 +5,8 @@ on:
     branches:
       - main
   schedule:
-    # Every 30 minutes, Monday through Friday
-    - cron: '*/30 * * * 1-5'
+    # Hourly - Monday through Friday
+    - cron: '0 * * * 1-5'
   workflow_dispatch:
 
 jobs:
