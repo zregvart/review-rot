@@ -22,12 +22,22 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Process config
+        env:
+          EC_AUTOMATION_KEY: ${{ secrets.EC_AUTOMATION_KEY }}
+          APP_INSTALL_ID: 29980719
         run: |-
           set -euo pipefail
+          function createJWT() {
+            local header=$(echo -n '{"alg":"RS256","typ":"JWT"}' | base64 | sed s/\+/-/ | sed -E s/=+$//)
+            local now_utc=$(date --utc +%s)
+            local payload=$(echo -n '{"iat":'$((now_utc - 60))',"exp":'$((now_utc + 120))',"iss":245286}' | base64 | sed s/\+/-/ | sed -E s/=+$//)
+            local signature=$(echo -n "${header}.${payload}" | openssl dgst -sha256 -binary -sign <(echo "${EC_AUTOMATION_KEY}")| base64 | tr -d '\n=' | tr -- '+/' '-_')
+            echo "${header}.${payload}.${signature}"
+          }
+
+          GITHUB_TOKEN=$(curl -s -X POST -H "Authorization: Bearer $(createJWT)" -H "Accept: application/vnd.github+json" https://api.github.com/app/installations/${APP_INSTALL_ID}/access_tokens | jq -r .token)
           < ./config.yaml envsubst > config-with-token.yaml
           cat config-with-token.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run review-rot
         uses: lcarva/review-rot-action/run@main
