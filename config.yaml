@@ -12,7 +12,7 @@ git_services:
   - enterprise-contract/enterprise-contract.github.io
   - enterprise-contract/hacks
   - enterprise-contract/infra-deployments-ci
-  - enterprise-contract/tekton-catalag
+  - enterprise-contract/tekton-catalog
   - redhat-appstudio/docs.stonesoup.io
   - redhat-appstudio/book
   - redhat-appstudio/build-definitions
